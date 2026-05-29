@@ -1,47 +1,53 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const currentSlide = ref(0)
 const selectedDestination = ref(null)
 
-const slides = [
+// Use known public image URLs so the hero loads immediately from the network
+const slides = computed(() => [
   {
-    title: 'Luxury Rwanda Escapes',
-    subtitle: 'Discover dramatic landscapes and unforgettable adventures',
+    title: t('home.slide1Title'),
+    subtitle: t('home.slide1Subtitle'),
     image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80'
   },
   {
-    title: 'Travel the Land of a Thousand Hills',
-    subtitle: 'From lush forests to vibrant culture',
+    title: t('home.slide2Title'),
+    subtitle: t('home.slide2Subtitle'),
     image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1600&q=80'
   },
   {
-    title: 'Tailor-made Safari Journeys',
-    subtitle: 'Experience wildlife, luxury lodges, and local cuisine',
+    title: t('home.slide3Title'),
+    subtitle: t('home.slide3Subtitle'),
     image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80'
   }
-]
+])
 
-const destinations = [
-  { name: 'Kigali', description: 'Modern city with art, dining, and heart.', icon: '🏙️' },
-  { name: 'Northern Province', description: 'Mystical mountains and gorilla trekking.', icon: '🦍' },
-  { name: 'Southern Province', description: 'Tranquil lakes and tea-covered hills.', icon: '🌿' },
-  { name: 'Western Province', description: 'Lake Kivu sunsets and water adventures.', icon: '🌅' },
-  { name: 'Eastern Province', description: 'Wildlife parks and cultural safaris.', icon: '🦁' }
-]
+const imageSrc = (slide) => slide.image
+
+const destinations = computed(() => [
+  { name: t('home.kigali'), description: t('home.kigaliDesc'), icon: '🏙️' },
+  { name: t('home.northernProvince'), description: t('home.northernDesc'), icon: '🦍' },
+  { name: t('home.southernProvince'), description: t('home.southernDesc'), icon: '🌿' },
+  { name: t('home.westernProvince'), description: t('home.westernDesc'), icon: '🌅' },
+  { name: t('home.easternProvince'), description: t('home.easternDesc'), icon: '🦁' }
+])
 
 onMounted(() => {
   setInterval(() => {
-    currentSlide.value = (currentSlide.value + 1) % slides.length
+    currentSlide.value = (currentSlide.value + 1) % slides.value.length
   }, 6000)
 })
 
 const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % slides.length
+  currentSlide.value = (currentSlide.value + 1) % slides.value.length
 }
 
 const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length
+  currentSlide.value = (currentSlide.value - 1 + slides.value.length) % slides.value.length
 }
 </script>
 
@@ -54,7 +60,7 @@ const prevSlide = () => {
         class="absolute inset-0 transition-opacity duration-1000"
         :class="currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'"
       >
-        <img :src="slide.image" alt="slide.title" class="h-full w-full object-cover" />
+        <img :src="imageSrc(slide)" :alt="slide.title" class="h-full w-full object-cover" />
         <div class="absolute inset-0 bg-black/50"></div>
       </div>
 
@@ -63,8 +69,8 @@ const prevSlide = () => {
           <span class="inline-flex rounded-full bg-emerald-500/20 px-5 py-2 text-sm uppercase tracking-[0.25em] text-emerald-100">
             Premium Rwanda Travel
           </span>
-          <h1 class="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">{{ slides[currentSlide].title }}</h1>
-          <p class="text-lg text-emerald-100/90 sm:text-xl">{{ slides[currentSlide].subtitle }}</p>
+          <h1 class="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">{{ slides[currentSlide]?.title }}</h1>
+          <p class="text-lg text-emerald-100/90 sm:text-xl">{{ slides[currentSlide]?.subtitle }}</p>
           <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a href="/about" class="rounded-full bg-emerald-500 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-xl shadow-emerald-500/30 transition hover:bg-emerald-400">
               Explore More

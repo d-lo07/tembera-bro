@@ -4,6 +4,7 @@ import About from '../views/About.vue'
 import Services from '../views/Services.vue'
 import Contact from '../views/Contact.vue'
 import Gallery from '../views/Gallery.vue'
+import Destination from '../views/Destination.vue'
 import NorthernProvince from '../views/NorthernProvince.vue'
 import SouthernProvince from '../views/SouthernProvince.vue'
 import WesternProvince from '../views/WesternProvince.vue'
@@ -21,7 +22,7 @@ const routes = [
         name: 'About',
         component: About,
     },
-      {
+    {
         path: '/services',
         name: 'Services',
         component: Services,
@@ -36,27 +37,33 @@ const routes = [
         name: 'Gallery',
         component: Gallery,
     },
-     {
-        path: '/Kigali',
+    {
+        path: '/destination',
+        name: 'Destination',
+        component: Destination,
+    },
+    {
+        path: '/kigali',
         name: 'Kigali',
         component: KigaliProvince,
     },
     {
-        path: '/West',
+        path: '/west',
         name: 'West',
         component: WesternProvince,
-    },{
-        path: '/East',
+    },
+    {
+        path: '/east',
         name: 'East',
         component: EasternProvince,
     },
-{
-        path: '/South',
+    {
+        path: '/south',
         name: 'South',
         component: SouthernProvince,
     },
     {
-        path: '/North',
+        path: '/north',
         name: 'North',
         component: NorthernProvince,
     },
