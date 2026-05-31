@@ -4,32 +4,32 @@ import { ref } from 'vue'
 const regions = [
   {
     name: 'Kigali',
-    description: 'The vibrant capital city with art, cuisine, and modern hotels.',
-    image: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80',
+    description: 'Rwanda’s clean, creative capital with galleries, rooftop dining and easy access to national parks.',
+    image: 'https://source.unsplash.com/1200x800/?Kigali,Rwanda',
     link: '/kigali'
   },
   {
     name: 'Northern Province',
-    description: 'Mountain gorillas, volcano treks, and emerald tea hills.',
-    image: 'https://images.unsplash.com/photo-1516528395216-900b66d5878b?auto=format&fit=crop&w=1200&q=80',
+    description: 'Volcanoes National Park, mountain gorillas and misty bamboo forests near Musanze.',
+    image: 'https://source.unsplash.com/1200x800/?Rwanda,Volcanoes',
     link: '/north'
   },
   {
     name: 'Southern Province',
-    description: 'Scenic lakes, rolling hills, and cultural village tours.',
-    image: 'https://images.unsplash.com/photo-1526481280696-3bfa7568c926?auto=format&fit=crop&w=1200&q=80',
+    description: 'Nyungwe Forest canopy walks, tea terraces and rich cultural heritage around Nyanza.',
+    image: 'https://source.unsplash.com/1200x800/?Rwanda,Nyungwe',
     link: '/south'
   },
   {
     name: 'Western Province',
-    description: 'Lakeside luxury and dramatic waterfalls.',
-    image: 'https://images.unsplash.com/photo-1494707924465-4d1c7d3ed35d?auto=format&fit=crop&w=1200&q=80',
+    description: 'Lake Kivu shores, island cruises and waterfall hikes in Rwanda’s scenic west.',
+    image: 'https://source.unsplash.com/1200x800/?Lake,Kivu,Rwanda',
     link: '/west'
   },
   {
     name: 'Eastern Province',
-    description: 'Wildlife reserves, safari routes, and cultural experiences.',
-    image: 'https://images.unsplash.com/photo-1554861695-0c17ae0d6e7f?auto=format&fit=crop&w=1200&q=80',
+    description: 'Akagera safaris, Lake Ihema birdlife and authentic village experiences.',
+    image: 'https://source.unsplash.com/1200x800/?Rwanda,Akagera',
     link: '/east'
   }
 ]
@@ -38,7 +38,7 @@ const regions = [
 <template>
   <section class="min-h-screen bg-slate-950 text-white">
     <div class="relative overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80" alt="Rwanda destination" class="absolute inset-0 h-full w-full object-cover opacity-50" />
+      <img src="https://source.unsplash.com/1600x900/?Rwanda,landscape" alt="Rwanda destination" class="absolute inset-0 h-full w-full object-cover opacity-50" />
       <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/70 to-slate-950/95"></div>
 
       <div class="relative mx-auto max-w-7xl px-6 py-28 text-center">

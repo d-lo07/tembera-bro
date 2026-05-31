@@ -1,30 +1,53 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import volcanoesImage from '../assets/images/volcanoes.jpg'
+import hotelImage from '../assets/images/Hotel.jpg'
+import conventionImage from '../assets/images/Convention.jpg'
 
 const { t } = useI18n()
 
 const currentSlide = ref(0)
 const selectedDestination = ref(null)
 
-// Use known public image URLs so the hero loads immediately from the network
 const slides = computed(() => [
   {
     title: t('home.slide1Title'),
     subtitle: t('home.slide1Subtitle'),
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80'
+    image: volcanoesImage,
+    alt: 'Volcanoes National Park gorilla country'
   },
   {
     title: t('home.slide2Title'),
     subtitle: t('home.slide2Subtitle'),
-    image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1600&q=80'
+    image: hotelImage,
+    alt: 'Lake Kivu luxury lodge at sunset'
   },
   {
     title: t('home.slide3Title'),
     subtitle: t('home.slide3Subtitle'),
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80'
+    image: conventionImage,
+    alt: 'Kigali city skyline with modern architecture'
   }
 ])
+
+const galleryImages = [
+  {
+    image: volcanoesImage,
+    title: 'Volcanoes National Park',
+    subtitle: 'Misty hills, mountain gorillas and lush rainforest scenery.'
+  },
+  {
+    image: hotelImage,
+    title: 'Lake Kivu Retreat',
+    subtitle: 'Waterfront lodges, calm waters and warm Rwandan hospitality.'
+  },
+  {
+    image: conventionImage,
+    title: 'Kigali City View',
+    subtitle: 'Modern city culture, contemporary design and safe urban escapes.'
+  }
+]
 
 const imageSrc = (slide) => slide.image
 
@@ -60,8 +83,13 @@ const prevSlide = () => {
         class="absolute inset-0 transition-opacity duration-1000"
         :class="currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'"
       >
-        <img :src="imageSrc(slide)" :alt="slide.title" class="h-full w-full object-cover" />
-        <div class="absolute inset-0 bg-black/50"></div>
+        <img
+          :src="imageSrc(slide)"
+          :alt="slide.title"
+          loading="eager"
+          class="h-full w-full object-cover brightness-110 contrast-110 saturate-110"
+        />
+        <div class="absolute inset-0 bg-black/20"></div>
       </div>
 
       <div class="relative z-20 flex min-h-screen flex-col items-center justify-center px-6 text-center text-white">
@@ -93,6 +121,25 @@ const prevSlide = () => {
           :class="currentSlide === index ? 'bg-emerald-500' : 'bg-white/60'"
           class="h-3 w-3 rounded-full transition"
         ></button>
+      </div>
+    </section>
+
+    <section class="bg-slate-900 text-white py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-12">
+          <p class="text-sm uppercase tracking-[0.3em] text-emerald-400">Rwanda photo highlights</p>
+          <h2 class="mt-4 text-4xl font-bold sm:text-5xl">Local scenes from across the country</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">Enjoy an enhanced preview of Rwanda’s landscapes, lakes and city views using our local asset photos.</p>
+        </div>
+        <div class="grid gap-6 lg:grid-cols-3">
+          <div v-for="item in galleryImages" :key="item.title" class="group overflow-hidden rounded-[32px] border border-white/10 bg-white/5 shadow-2xl shadow-slate-950/20 transition hover:-translate-y-2">
+            <img :src="item.image" :alt="item.title" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105 brightness-110 contrast-110" />
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold text-white">{{ item.title }}</h3>
+              <p class="mt-3 text-slate-300">{{ item.subtitle }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
