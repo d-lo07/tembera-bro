@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
-const logoImage = new URL('../assets/images/rwanda-flag.jpg', import.meta.url).href
+const logoImage = '/logo.svg'
 
 const { locale } = useI18n()
 
