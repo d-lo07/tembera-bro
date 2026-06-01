@@ -21,7 +21,7 @@ export const messages = {
       slide1Subtitle: 'Discover dramatic landscapes and unforgettable adventures',
       slide2Title: 'Travel the Land of a Thousand Hills',
       slide2Subtitle: 'From lush forests to vibrant culture',
-      slide3Title: 'Tailor-made Safari Journeys',
+      slide3Title: 'Curated Safari Adventures',
       slide3Subtitle: 'Experience wildlife, luxury lodges, and local cuisine',
       kigali: 'Kigali',
       kigaliDesc: 'Modern city with art, dining, and heart.',
