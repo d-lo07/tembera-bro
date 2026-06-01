@@ -10,6 +10,19 @@ import countrysideImage from '../assets/images/countryside-in-rwanda.jpg'
 import welcomeImage from '../assets/images/village-and-volcano.jpg'
 import perspectiveImage from '../assets/images/city-view-of-kigali-and-surrounding-hills-in-rwanda.jpg'
 
+const galleryFiles = Object.entries(import.meta.glob('../assets/images/*.{jpg,png}', { eager: true }))
+  .filter(([path]) => !path.includes('favicon'))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, module]) => {
+    const fileName = path.split('/').pop().replace(/\.[^.]+$/, '')
+    const title = fileName.replace(/[-_]+/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())
+    return {
+      title,
+      subtitle: 'A beautiful scene from Rwanda.',
+      image: module.default
+    }
+  })
+
 export const pages = {
   about: {
     hero: {
@@ -186,6 +199,12 @@ export const pages = {
         title: 'Featured moments',
         subtitle: 'A collection of iconic landscapes, wildlife, and memorable experiences.',
         type: 'media'
+      },
+      {
+        title: 'All photos',
+        subtitle: 'Browse every image from our Rwanda gallery.',
+        type: 'gallery',
+        items: galleryFiles
       }
     ],
     media: [

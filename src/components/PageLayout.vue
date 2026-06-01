@@ -111,7 +111,7 @@ const galleryItems = computed(() => props.page.gallery || [])
 
         <div v-if="section.type === 'cards'" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           <div v-for="item in section.items" :key="item.title"
-            class="group overflow-hidden rounded-3xl border border-white/10 bg-[#020617] p-6 transition hover:-translate-y-1"
+            class="group overflow-hidden rounded-3xl border border-slate-700/30 bg-[#020617] p-6 transition hover:-translate-y-1"
           >
             <img v-if="item.image" :src="item.image" :alt="item.title" class="mb-6 h-56 w-full object-cover rounded-3xl transition duration-500 group-hover:scale-105" />
             <div v-else class="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-emerald-500/10 text-emerald-400">
@@ -132,7 +132,7 @@ const galleryItems = computed(() => props.page.gallery || [])
         </div>
 
         <div v-if="section.type === 'features'" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div v-for="item in section.items" :key="item.title" class="rounded-3xl border border-white/10 bg-[#020617] p-8 transition hover:-translate-y-1">
+          <div v-for="item in section.items" :key="item.title" class="rounded-3xl border border-slate-700/30 bg-[#020617] p-8 transition hover:-translate-y-1">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-emerald-500/10 text-emerald-400 mb-6">
               <component :is="item.icon" class="h-6 w-6" />
             </div>
@@ -142,7 +142,7 @@ const galleryItems = computed(() => props.page.gallery || [])
         </div>
 
         <div v-if="section.type === 'stats'" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div v-for="stat in section.items" :key="stat.label" class="rounded-3xl border border-white/10 bg-[#020617] p-8 text-center">
+          <div v-for="stat in section.items" :key="stat.label" class="rounded-3xl border border-slate-700/30 bg-[#020617] p-8 text-center">
             <div class="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-emerald-500/10 text-emerald-400">
               <component :is="stat.icon" class="h-6 w-6" />
             </div>
@@ -152,7 +152,7 @@ const galleryItems = computed(() => props.page.gallery || [])
         </div>
 
         <div v-if="section.type === 'gallery'" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <div v-for="item in section.items" :key="item.title" class="group overflow-hidden rounded-3xl border border-white/10 bg-[#020617] transition hover:-translate-y-1">
+          <div v-for="item in section.items" :key="item.title" class="group overflow-hidden rounded-3xl border border-slate-700/30 bg-[#020617] transition hover:-translate-y-1">
             <img :src="item.image" :alt="item.title" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
             <div class="p-6">
               <h3 class="text-2xl font-semibold text-white">{{ item.title }}</h3>
@@ -162,7 +162,7 @@ const galleryItems = computed(() => props.page.gallery || [])
         </div>
 
         <div v-if="section.type === 'media'" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <div v-for="item in mediaItems" :key="item.title" class="group relative overflow-hidden rounded-3xl border border-white/10 bg-[#020617] transition hover:-translate-y-1">
+          <div v-for="item in mediaItems" :key="item.title" class="group relative overflow-hidden rounded-3xl border border-slate-700/30 bg-[#020617] transition hover:-translate-y-1">
             <a
               v-if="item.type === 'video'"
               :href="item.src"
@@ -184,7 +184,7 @@ const galleryItems = computed(() => props.page.gallery || [])
           </div>
         </div>
 
-        <div v-if="section.type === 'form'" class="max-w-3xl mx-auto rounded-[32px] border border-white/10 bg-[#020617] p-8 shadow-2xl shadow-slate-950/30">
+        <div v-if="section.type === 'form'" class="max-w-3xl mx-auto rounded-[32px] border border-slate-700/30 bg-[#020617] p-8 shadow-2xl shadow-slate-950/30">
           <div class="space-y-4">
             <p class="text-slate-300">{{ section.subtitle }}</p>
             <div v-if="submitted" class="rounded-3xl bg-emerald-500/15 p-4 text-emerald-100">Your message was sent successfully.</div>
