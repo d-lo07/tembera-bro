@@ -116,34 +116,38 @@ const changeLanguage = (lang: LocaleCode) => {
 
       <li><router-link to="/contact" class="rounded-full border border-slate-200/20 px-4 py-2 text-slate-100 transition hover:bg-emerald-500/20 hover:text-white">{{ $t('navbar.contact') }}</router-link></li>
 
-      <!-- Language Selector — unchanged -->
+      <!-- Language Selector (styled to match destination dropdown) -->
       <li class="relative group">
-        <button class="inline-flex items-center gap-1 rounded-full border border-emerald-300/50 px-3 py-2 text-slate-100 transition hover:bg-emerald-500/20">
+        <button class="inline-flex items-center gap-2 rounded-full border border-emerald-300/50 px-3 py-2 text-slate-100 transition hover:bg-emerald-500/20">
           🌐 {{ locale.toUpperCase() }} <span>▾</span>
         </button>
-        <ul class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute right-0 mt-2 w-32 rounded-2xl bg-[#0F172A] p-2 shadow-2xl shadow-black/40 transition-all z-50">
+
+        <ul class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute right-0 mt-2 w-56 rounded-2xl bg-[#1A1D27] border border-white/[0.07] p-2 shadow-2xl shadow-black/60 transition-all z-50">
           <li>
             <button
               @click="changeLanguage('en')"
-              :class="['w-full text-left block rounded-xl px-4 py-2 text-slate-200', locale === 'en' ? 'bg-emerald-500/30' : 'hover:bg-slate-900/80']"
+              class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-500/10 hover:text-emerald-300 transition group/item w-full text-left"
             >
-              🇬🇧 English
+              <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover/item:bg-emerald-500/20 flex-shrink-0">🇬🇧</span>
+              <span class="text-sm font-medium">English</span>
             </button>
           </li>
           <li>
             <button
               @click="changeLanguage('fr')"
-              :class="['w-full text-left block rounded-xl px-4 py-2 text-slate-200', locale === 'fr' ? 'bg-emerald-500/30' : 'hover:bg-slate-900/80']"
+              class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-500/10 hover:text-emerald-300 transition group/item w-full text-left"
             >
-              🇫🇷 Français
+              <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover/item:bg-emerald-500/20 flex-shrink-0">🇫🇷</span>
+              <span class="text-sm font-medium">Français</span>
             </button>
           </li>
           <li>
             <button
               @click="changeLanguage('rw')"
-              :class="['w-full text-left block rounded-xl px-4 py-2 text-slate-200', locale === 'rw' ? 'bg-emerald-500/30' : 'hover:bg-slate-900/80']"
+              class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-500/10 hover:text-emerald-300 transition group/item w-full text-left"
             >
-              🇷🇼 Kinyarwanda
+              <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover/item:bg-emerald-500/20 flex-shrink-0">🇷🇼</span>
+              <span class="text-sm font-medium">Kinyarwanda</span>
             </button>
           </li>
         </ul>
