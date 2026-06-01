@@ -50,7 +50,7 @@ import { RouterLink } from 'vue-router'
     </div>
 
     <div class="mt-12 pt-6 text-sm flex flex-col gap-3 md:flex-row md:items-center md:justify-between" style="border-top: 1px solid rgba(255, 255, 255, 0.08); color: #94A3B8;">
-      <p style="color: #CBD5E1;">&copy; 2024 Tembera URWANDA. All rights reserved.</p>
+      <p style="color: #CBD5E1;">&copy; Done By CYUSA JASON.</p>
       <div class="flex flex-wrap items-center gap-4">
         <RouterLink to="/" class="transition hover:text-[#22C55E]">Home</RouterLink>
         <RouterLink to="/about" class="transition hover:text-[#22C55E]">About</RouterLink>
