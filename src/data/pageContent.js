@@ -23,6 +23,24 @@ const galleryFiles = Object.entries(import.meta.glob('../assets/images/*.{jpg,pn
     }
   })
 
+// Heuristic classification of gallery images into destination buckets
+const classify = (item) => {
+  const t = (item.title || '').toLowerCase()
+  if (/kigali|city|panorama|urban|night/i.test(t)) return 'kigali'
+  if (/gorilla|volcan|virunga|mountain|hike|trek/i.test(t)) return 'northern'
+  if (/lake|kivu|shore|waterfront|beach/i.test(t)) return 'western'
+  if (/forest|village|countryside|heritage|rural/i.test(t)) return 'southern'
+  if (/plains|reserve|wildlife|savanna|east/i.test(t)) return 'eastern'
+  return 'other'
+}
+
+const categorizedGallery = galleryFiles.reduce((acc, item) => {
+  const key = classify(item)
+  if (!acc[key]) acc[key] = []
+  acc[key].push(item)
+  return acc
+}, { kigali: [], northern: [], western: [], southern: [], eastern: [], other: [] })
+
 export const pages = {
   about: {
     hero: {
@@ -237,6 +255,13 @@ export const pages = {
           { title: 'City discovery', subtitle: 'Markets, memorials, and riverside neighborhoods.', image: perspectiveImage }
         ]
       }
+      ,
+      {
+        title: 'Kigali — Photo Gallery',
+        subtitle: 'A selection of images from Kigali and nearby areas.',
+        type: 'gallery',
+        items: categorizedGallery.kigali
+      }
     ],
     cta: {
       label: 'Discover Kigali',
@@ -264,6 +289,13 @@ export const pages = {
           { title: 'Scenic hikes', subtitle: 'Misty volcano trails and panoramic overlooks.', image: perspectiveImage },
           { title: 'Luxury lodges', subtitle: 'Forest villas with curated comfort.', image: hotelImage }
         ]
+      }
+      ,
+      {
+        title: 'Northern — Photo Gallery',
+        subtitle: 'Images from the Volcanoes region and gorilla country.',
+        type: 'gallery',
+        items: categorizedGallery.northern
       }
     ],
     cta: {
@@ -293,6 +325,13 @@ export const pages = {
           { title: 'Premium dining', subtitle: 'Fresh lakeside cuisine and crafted menus.', image: hotelImage }
         ]
       }
+      ,
+      {
+        title: 'Western — Photo Gallery',
+        subtitle: 'Scenes along Lake Kivu and western landscapes.',
+        type: 'gallery',
+        items: categorizedGallery.western
+      }
     ],
     cta: {
       label: 'Start with western Rwanda',
@@ -321,6 +360,13 @@ export const pages = {
           { title: 'Heritage journeys', subtitle: 'Local storytelling and creative events.', image: perspectiveImage }
         ]
       }
+      ,
+      {
+        title: 'Southern — Photo Gallery',
+        subtitle: 'Village life, forests, and southern vistas.',
+        type: 'gallery',
+        items: categorizedGallery.southern
+      }
     ],
     cta: {
       label: 'Explore the south',
@@ -348,6 +394,13 @@ export const pages = {
           { title: 'Community tours', subtitle: 'Local culture, craft visits, and authentic encounters.', image: perspectiveImage },
           { title: 'Relaxed pacing', subtitle: 'Low-key stays with nature as the focus.', image: lakeImage }
         ]
+      }
+      ,
+      {
+        title: 'Eastern — Photo Gallery',
+        subtitle: 'Wildlife reserves and open plains of the east.',
+        type: 'gallery',
+        items: categorizedGallery.eastern
       }
     ],
     cta: {
