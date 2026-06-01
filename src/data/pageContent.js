@@ -19,7 +19,7 @@ const galleryFiles = Object.entries(import.meta.glob('../assets/images/*.{jpg,pn
     return {
       title,
       subtitle: 'A beautiful scene from Rwanda.',
-      image: module.default
+      image: (module && module.default) ? module.default : module
     }
   })
 

@@ -8,19 +8,16 @@ const page = pages.gallery
 type Tab = 'images' | 'videos'
 const activeTab = ref<Tab>('images')
 
-// Auto-import all images from src/assets/images
-const imageModules = import.meta.glob('../assets/images/*', { eager: true, as: 'url' })
-
-const images = computed(() =>
-  Object.entries(imageModules).map(([path, src]) => {
-    const filename = path.split('/').pop() ?? ''
-    const label = filename
-      .replace(/\.[^.]+$/, '')
-      .replace(/[-_]/g, ' ')
-      .replace(/\b\w/g, (c) => c.toUpperCase())
+// Use gallery items from the page data as image sources
+const images = computed(() => {
+  const gallerySection = (page.sections || []).find((s: any) => s.type === 'gallery')
+  const items = (gallerySection && gallerySection.items) ? gallerySection.items : []
+  return items.map((item: any) => {
+    const src = item && item.image && item.image.default ? item.image.default : item.image
+    const label = item && item.title ? item.title : ''
     return { src: src as string, label }
   })
-)
+})
 
 const videos = [
   { id: 'ul_qA7Vz1-Y', title: 'Rwanda — Beautiful Landscapes' },
