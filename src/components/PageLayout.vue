@@ -69,26 +69,24 @@ const galleryItems = computed(() => props.page.gallery || [])
 </script>
 
 <template>
-  <div class="bg-[#020617] text-slate-100 min-h-screen">
-    <section class="relative overflow-hidden" style="min-height: 90vh;">
+  <div class="bg-page-dark text-slate-100 min-h-screen">
+    <section class="relative overflow-hidden min-h-[90vh]">
       <img :src="page.hero.image" alt="Hero image" class="absolute inset-0 h-full w-full object-cover brightness-90" />
-      <div class="absolute inset-0 bg-gradient-to-b from-[#020617cc] via-[#020617dd] to-[#020617ee]"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0b1220cc] via-[#0b1220dd] to-[#0b1220ee]"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-6 py-32 text-center">
         <div class="max-w-3xl mx-auto space-y-6">
-          <span v-if="page.hero.tag" class="inline-block rounded-full px-5 py-1.5 text-xs font-semibold uppercase tracking-widest"
-            style="background: rgba(22,163,74,0.15); color: #86EFAC; border: 1px solid rgba(134,239,172,0.25);">
+          <span v-if="page.hero.tag" class="inline-block rounded-full border border-cyan-500/40 bg-cyan-500/10 px-5 py-1.5 text-xs font-semibold uppercase tracking-widest text-cyan-300">
             {{ page.hero.tag }}
           </span>
-          <h1 class="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl" style="color: #FFFFFF;">{{ page.hero.title }}</h1>
-          <p class="text-lg sm:text-xl" style="color: #94A3B8;">{{ page.hero.subtitle }}</p>
+          <h1 class="text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">{{ page.hero.title }}</h1>
+          <p class="text-lg sm:text-xl text-slate-400">{{ page.hero.subtitle }}</p>
           <div class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:justify-center">
             <button
               v-for="action in page.hero.actions"
               :key="action.label"
               type="button"
               @click="navigate(action.to || action.href)"
-              class="rounded-full px-8 py-3 text-sm font-semibold transition"
-              :style="action.primary ? 'background: #16A34A; color: #FFFFFF;' : 'border: 1px solid rgba(255,255,255,0.18); color: #F1F5F9; background: transparent;'"
+              :class="['rounded-full px-8 py-3 text-sm font-semibold transition', action.primary ? 'btn-primary' : 'btn-secondary']"
             >
               {{ action.label }}
             </button>
@@ -97,13 +95,12 @@ const galleryItems = computed(() => props.page.gallery || [])
       </div>
     </section>
 
-    <section v-for="section in page.sections" :key="section.title || section.type" class="py-20" :style="section.background || 'background: #0F172A;'">
-      <div class="mx-auto max-w-7xl px-6">
+    <section v-for="section in page.sections" :key="section.title || section.type" class="py-20 bg-surface" :style="section.background">
+      <div class="mx-auto max-w-7xl px-6"></div>
         <div v-if="section.title" class="mb-12 text-center">
-          <p v-if="section.label" class="text-xs font-semibold uppercase tracking-widest" style="color: #86EFAC;">{{ section.label }}</p>
-          <h2 class="mt-3 text-3xl font-bold sm:text-4xl" style="color: #FFFFFF;">{{ section.title }}</h2>
-          <p v-if="section.subtitle" class="mx-auto mt-3 max-w-xl text-sm" style="color: #475569;">{{ section.subtitle }}</p>
-        </div>
+          <p v-if="section.label" class="text-xs font-semibold uppercase tracking-widest text-primary">{{ section.label }}</p>
+          <h2 class="mt-3 text-3xl font-bold sm:text-4xl text-white">{{ section.title }}</h2>
+          <p v-if="section.subtitle" class="mx-auto mt-3 max-w-xl text-sm text-slate-400">{{ section.subtitle }}</p>
 
         <div v-if="section.type === 'text'" class="space-y-6 text-slate-300">
           <p v-for="(paragraph, index) in section.paragraphs" :key="index">{{ paragraph }}</p>
@@ -111,10 +108,10 @@ const galleryItems = computed(() => props.page.gallery || [])
 
         <div v-if="section.type === 'cards'" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           <div v-for="item in section.items" :key="item.title"
-            class="group overflow-hidden rounded-3xl border border-slate-700/30 bg-[#020617] p-6 transition hover:-translate-y-1"
+            class="group overflow-hidden rounded-3xl border border-surface bg-surface p-6 transition hover:-translate-y-1"
           >
             <img v-if="item.image" :src="item.image" :alt="item.title" class="mb-6 h-56 w-full object-cover rounded-3xl transition duration-500 group-hover:scale-105" />
-            <div v-else class="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-emerald-500/10 text-emerald-400">
+            <div v-else class="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-cyan-500/10 text-cyan-300">
               <component v-if="item.icon" :is="item.icon" class="h-8 w-8" />
             </div>
             <h3 class="text-2xl font-semibold text-white">{{ item.title }}</h3>
@@ -123,7 +120,7 @@ const galleryItems = computed(() => props.page.gallery || [])
               <button
                 type="button"
                 @click="navigate(item.link || item.to)"
-                class="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400"
+                class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#0497ba]"
               >
                 Learn more <ArrowRight class="h-4 w-4" />
               </button>
@@ -132,8 +129,8 @@ const galleryItems = computed(() => props.page.gallery || [])
         </div>
 
         <div v-if="section.type === 'features'" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div v-for="item in section.items" :key="item.title" class="rounded-3xl border border-slate-700/30 bg-[#020617] p-8 transition hover:-translate-y-1">
-            <div class="inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-emerald-500/10 text-emerald-400 mb-6">
+          <div v-for="item in section.items" :key="item.title" class="rounded-3xl border border-slate-700/30 bg-surface p-8 transition hover:-translate-y-1">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-[#06b6d4]/10 text-[#06b6d4] mb-6">
               <component :is="item.icon" class="h-6 w-6" />
             </div>
             <h3 class="text-xl font-semibold text-white">{{ item.title }}</h3>
@@ -142,8 +139,8 @@ const galleryItems = computed(() => props.page.gallery || [])
         </div>
 
         <div v-if="section.type === 'stats'" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div v-for="stat in section.items" :key="stat.label" class="rounded-3xl border border-slate-700/30 bg-[#020617] p-8 text-center">
-            <div class="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-emerald-500/10 text-emerald-400">
+          <div v-for="stat in section.items" :key="stat.label" class="rounded-3xl border border-slate-700/30 bg-surface p-8 text-center">
+            <div class="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-[#06b6d4]/10 text-[#06b6d4]">
               <component :is="stat.icon" class="h-6 w-6" />
             </div>
             <p class="text-3xl font-extrabold text-white">{{ stat.value }}</p>
@@ -152,7 +149,7 @@ const galleryItems = computed(() => props.page.gallery || [])
         </div>
 
         <div v-if="section.type === 'gallery'" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <div v-for="item in section.items" :key="item.title" class="group overflow-hidden rounded-3xl border border-slate-700/30 bg-[#020617] transition hover:-translate-y-1">
+          <div v-for="item in section.items" :key="item.title" class="group overflow-hidden rounded-3xl border border-slate-700/30 bg-surface transition hover:-translate-y-1">
             <img :src="item.image" :alt="item.title" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
             <div class="p-6">
               <h3 class="text-2xl font-semibold text-white">{{ item.title }}</h3>
@@ -162,7 +159,7 @@ const galleryItems = computed(() => props.page.gallery || [])
         </div>
 
         <div v-if="section.type === 'media'" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <div v-for="item in mediaItems" :key="item.title" class="group relative overflow-hidden rounded-3xl border border-slate-700/30 bg-[#020617] transition hover:-translate-y-1">
+          <div v-for="item in mediaItems" :key="item.title" class="group relative overflow-hidden rounded-3xl border border-slate-700/30 bg-surface transition hover:-translate-y-1">
             <a
               v-if="item.type === 'video'"
               :href="item.src"
@@ -172,7 +169,7 @@ const galleryItems = computed(() => props.page.gallery || [])
             >
               <img :src="item.image" :alt="item.title" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105 brightness-75" />
               <div class="absolute inset-0 flex items-center justify-center">
-                <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-[#16A34A] transition group-hover:scale-110">
+                <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-primary transition group-hover:scale-110">
                   <Play class="h-6 w-6" />
                 </div>
               </div>
@@ -184,10 +181,10 @@ const galleryItems = computed(() => props.page.gallery || [])
           </div>
         </div>
 
-        <div v-if="section.type === 'form'" class="max-w-3xl mx-auto rounded-[32px] border border-slate-700/30 bg-[#020617] p-8 shadow-2xl shadow-slate-950/30">
+        <div v-if="section.type === 'form'" class="max-w-3xl mx-auto rounded-[32px] border border-slate-700/30 bg-surface p-8 shadow-2xl shadow-slate-950/30">
           <div class="space-y-4">
             <p class="text-slate-300">{{ section.subtitle }}</p>
-            <div v-if="submitted" class="rounded-3xl bg-emerald-500/15 p-4 text-emerald-100">Your message was sent successfully.</div>
+            <div v-if="submitted" class="rounded-3xl bg-[#06b6d4]/15 p-4 text-[#d8f2ff]">Your message was sent successfully.</div>
             <form @submit.prevent="submitForm" class="space-y-5">
               <div>
                 <label class="mb-2 block text-sm font-semibold text-slate-200">Name</label>
@@ -218,25 +215,23 @@ const galleryItems = computed(() => props.page.gallery || [])
       </div>
     </section>
 
-    <section v-if="page.cta" class="py-16 text-center" style="background: #0F172A; border-top: 1px solid rgba(255,255,255,0.06);">
+    <section v-if="page.cta" class="py-16 text-center bg-surface border-t border-surface">
       <div class="mx-auto max-w-4xl px-6">
-        <p v-if="page.cta.label" class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #86EFAC;">{{ page.cta.label }}</p>
-        <h2 class="text-3xl font-bold sm:text-4xl" style="color: #FFFFFF;">{{ page.cta.title }}</h2>
-        <p v-if="page.cta.subtitle" class="mx-auto mt-3 max-w-xl text-sm" style="color: #475569;">{{ page.cta.subtitle }}</p>
+        <p v-if="page.cta.label" class="text-xs font-semibold uppercase tracking-widest mb-2 text-primary">{{ page.cta.label }}</p>
+        <h2 class="text-3xl font-bold sm:text-4xl text-white">{{ page.cta.title }}</h2>
+        <p v-if="page.cta.subtitle" class="mx-auto mt-3 max-w-xl text-sm text-slate-400">{{ page.cta.subtitle }}</p>
         <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <button
             v-if="page.cta.primary"
             @click="navigate(page.cta.primary.to || page.cta.primary.href)"
-            class="rounded-full px-8 py-3 text-sm font-semibold transition"
-            style="background: #16A34A; color: #FFFFFF;"
+            class="btn-primary"
           >
             {{ page.cta.primary.label }}
           </button>
           <button
             v-if="page.cta.secondary"
             @click="navigate(page.cta.secondary.to || page.cta.secondary.href)"
-            class="rounded-full px-8 py-3 text-sm font-semibold transition"
-            style="border: 1px solid rgba(255,255,255,0.2); color: #F1F5F9; background: transparent;"
+            class="btn-secondary"
           >
             {{ page.cta.secondary.label }}
           </button>

@@ -54,42 +54,37 @@ const goTo = (path) => router.push(path)
 </script>
 
 <template>
-  <div style="background-color: #020617; color: #F1F5F9;">
+  <div class="bg-page-dark text-slate-100">
 
     <!-- ── HERO ── -->
-    <section class="relative overflow-hidden" style="min-height: 100vh;">
+    <section class="relative overflow-hidden min-h-screen">
       <div
         v-for="(slide, i) in slides" :key="i"
         class="absolute inset-0 transition-opacity duration-1000"
         :class="currentSlide === i ? 'opacity-100 z-10' : 'opacity-0 z-0'"
       >
-        <img :src="slide.image" :alt="slide.alt" loading="eager" class="h-full w-full object-cover" style="filter: brightness(0.45);" />
-        <div class="absolute inset-0" style="background: rgba(2,6,23,0.3);"></div>
+        <img :src="slide.image" :alt="slide.alt" loading="eager" class="h-full w-full object-cover brightness-[0.45]" />
+        <div class="absolute inset-0 bg-slate-950/30"></div>
       </div>
 
-      <div class="relative z-20 flex flex-col items-center justify-center px-6 text-center" style="min-height: 100vh;">
+      <div class="relative z-20 flex flex-col items-center justify-center px-6 text-center min-h-screen">
         <div class="max-w-3xl space-y-6">
           <span
-            class="inline-block rounded-full px-5 py-1.5 text-xs font-semibold uppercase tracking-widest"
-            style="background: rgba(22,163,74,0.15); color: #86EFAC; border: 1px solid rgba(134,239,172,0.25);"
+            class="inline-block rounded-full border border-cyan-500/40 bg-cyan-500/10 px-5 py-1.5 text-xs font-semibold uppercase tracking-widest text-cyan-300"
           >
             Tembera URWANDA
           </span>
-          <h1 class="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl" style="color: #FFFFFF;">
+          <h1 class="text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
             {{ slides[currentSlide]?.title }}
           </h1>
-          <p class="text-lg sm:text-xl" style="color: #94A3B8;">{{ slides[currentSlide]?.subtitle }}</p>
+          <p class="text-lg sm:text-xl text-slate-400">{{ slides[currentSlide]?.subtitle }}</p>
           <div class="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <router-link to="/about"
-              class="rounded-full px-8 py-3 text-sm font-semibold transition hover:opacity-90"
-              style="background: #16A34A; color: #FFFFFF;">
+              class="rounded-full px-8 py-3 text-sm font-semibold transition hover:opacity-90 btn-primary">
               Explore Rwanda
             </router-link>
             <button @click="nextSlide"
-              class="rounded-full px-8 py-3 text-sm font-semibold transition"
-              style="border: 1px solid rgba(255,255,255,0.2); color: #F1F5F9;"
-              onmouseover="this.style.color='#22C55E'; this.style.borderColor='#22C55E';"
-              onmouseout="this.style.color='#F1F5F9'; this.style.borderColor='rgba(255,255,255,0.2)';">
+              class="rounded-full px-8 py-3 text-sm font-semibold transition btn-secondary">
               Next Slide
             </button>
           </div>
@@ -98,53 +93,53 @@ const goTo = (path) => router.push(path)
 
       <div class="absolute inset-x-0 bottom-8 z-30 flex justify-center gap-2">
         <button v-for="(_, i) in slides" :key="i" @click="currentSlide = i"
-          :style="currentSlide === i ? 'background:#16A34A; width:24px;' : 'background:rgba(255,255,255,0.3); width:12px;'"
-          style="height:10px; border-radius:999px; transition:all 0.3s; border:none; cursor:pointer;"
+          :class="[
+            'h-2 rounded-full transition-all duration-300 border-none cursor-pointer',
+            currentSlide === i ? 'bg-primary w-6' : 'bg-white/30 w-3'
+          ]"
         ></button>
       </div>
     </section>
 
     <!-- ── TAGLINE BAND ── -->
-    <section class="py-8 text-center" style="background: #0F172A; border-top: 1px solid rgba(255,255,255,0.06);">
-      <p class="text-xl font-semibold" style="color: #FFFFFF;">"Discover the beauty of the land of a thousand hills"</p>
-      <p class="mt-1 text-xs uppercase tracking-widest" style="color: #86EFAC;">Rwanda · Africa · Unforgettable</p>
+    <section class="py-8 text-center bg-surface border-t border-surface">
+      <p class="text-xl font-semibold text-white">"Discover the beauty of the land of a thousand hills"</p>
+      <p class="mt-1 text-xs uppercase tracking-widest text-primary">Rwanda · Africa · Unforgettable</p>
     </section>
 
     <!-- ── STATS ── -->
-    <section class="py-16" style="background: #020617; border-bottom: 1px solid rgba(255,255,255,0.06);">
+    <section class="py-16 bg-surface border-b border-surface">
       <div class="mx-auto max-w-5xl px-6">
         <div class="grid grid-cols-2 gap-6 lg:grid-cols-4">
           <div v-for="stat in stats" :key="stat.label" class="text-center">
-            <div class="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl"
-              style="background: rgba(22,163,74,0.12); color: #22C55E;">
+            <div class="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-300">
               <component :is="stat.icon" class="h-5 w-5" />
             </div>
-            <p class="text-3xl font-extrabold" style="color: #FFFFFF;">{{ stat.value }}</p>
-            <p class="mt-1 text-xs uppercase tracking-wider" style="color: #475569;">{{ stat.label }}</p>
+            <p class="text-3xl font-extrabold text-white">{{ stat.value }}</p>
+            <p class="mt-1 text-xs uppercase tracking-wider text-slate-400">{{ stat.label }}</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ── GALLERY ── -->
-    <section class="py-20" style="background: #0F172A;">
+    <section class="py-20 bg-surface">
       <div class="mx-auto max-w-7xl px-6">
         <div class="mb-12 text-center">
-          <p class="text-xs font-semibold uppercase tracking-widest" style="color: #86EFAC;">Photo highlights</p>
-          <h2 class="mt-3 text-3xl font-bold sm:text-4xl" style="color: #FFFFFF;">Local scenes from across the country</h2>
-          <p class="mx-auto mt-3 max-w-xl text-sm" style="color: #475569;">Rwanda's landscapes, lakes and city views.</p>
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary">Photo highlights</p>
+          <h2 class="mt-3 text-3xl font-bold sm:text-4xl text-white">Local scenes from across the country</h2>
+          <p class="mx-auto mt-3 max-w-xl text-sm text-slate-400">Rwanda's landscapes, lakes and city views.</p>
         </div>
         <div class="grid gap-6 lg:grid-cols-3">
           <div v-for="item in galleryImages" :key="item.title"
-            class="group overflow-hidden rounded-2xl transition hover:-translate-y-1"
-            style="border: 1px solid rgba(255,255,255,0.08); background: #020617;">
+            class="group overflow-hidden rounded-2xl transition hover:-translate-y-1 border border-surface bg-surface">
             <div class="overflow-hidden">
               <img :src="item.image" :alt="item.title"
-                class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" style="filter: brightness(0.85);" />
+                class="h-56 w-full object-cover transition duration-500 group-hover:scale-105 brightness-[0.85]" />
             </div>
-            <div class="p-5" style="border-top: 1px solid rgba(255,255,255,0.06);">
-              <h3 class="font-bold" style="color: #FFFFFF;">{{ item.title }}</h3>
-              <p class="mt-1 text-sm" style="color: #475569;">{{ item.subtitle }}</p>
+            <div class="p-5 border-t border-surface">
+              <h3 class="font-bold text-white">{{ item.title }}</h3>
+              <p class="mt-1 text-sm text-slate-400">{{ item.subtitle }}</p>
             </div>
           </div>
         </div>
@@ -152,35 +147,29 @@ const goTo = (path) => router.push(path)
     </section>
 
     <!-- ── EXPERIENCES ── -->
-    <section class="py-20" style="background: #020617;">
+    <section class="py-20 bg-surface">
       <div class="mx-auto max-w-7xl px-6">
         <div class="mb-12 text-center">
-          <p class="text-xs font-semibold uppercase tracking-widest" style="color: #86EFAC;">Signature experiences</p>
-          <h2 class="mt-3 text-3xl font-bold sm:text-4xl" style="color: #FFFFFF;">Rwanda in unforgettable style</h2>
-          <p class="mx-auto mt-3 max-w-xl text-sm" style="color: #475569;">
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary">Signature experiences</p>
+          <h2 class="mt-3 text-3xl font-bold sm:text-4xl text-white">Rwanda in unforgettable style</h2>
+          <p class="mx-auto mt-3 max-w-xl text-sm text-slate-400">
             Luxury lodges, breathtaking trails, and curated cultural experiences.
           </p>
         </div>
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <div v-for="(exp, i) in experiences" :key="i"
-            class="rounded-2xl p-6 transition"
-            style="border: 1px solid rgba(255,255,255,0.08); background: #0F172A;"
-            onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';"
-            onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';">
-            <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl"
-              style="background: rgba(22,163,74,0.15); color: #22C55E;">
+            class="rounded-2xl p-6 transition border border-surface bg-surface hover:border-[#06b6d4]/30"
+          >
+            <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-300">
               <component :is="exp.icon" class="h-5 w-5" />
             </div>
-            <h3 class="mt-4 font-bold" style="color: #FFFFFF;">{{ exp.title }}</h3>
-            <p class="mt-2 text-sm leading-relaxed" style="color: #475569;">{{ exp.desc }}</p>
+            <h3 class="mt-4 font-bold text-white">{{ exp.title }}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">{{ exp.desc }}</p>
           </div>
         </div>
         <div class="mt-10 text-center">
           <router-link to="/services"
-            class="inline-flex items-center gap-1.5 text-sm font-semibold transition"
-            style="color: #F1F5F9; text-decoration: underline; text-underline-offset: 4px;"
-            onmouseover="this.style.color='#22C55E';"
-            onmouseout="this.style.color='#F1F5F9';">
+            class="inline-flex items-center gap-1.5 text-sm font-semibold transition underline underline-offset-4 text-slate-100 hover:text-primary">
             View all services <ArrowRight class="h-4 w-4" />
           </router-link>
         </div>
@@ -188,31 +177,25 @@ const goTo = (path) => router.push(path)
     </section>
 
     <!-- ── DESTINATIONS ── -->
-    <section class="py-20" style="background: #0F172A;">
+    <section class="py-20 bg-surface">
       <div class="mx-auto max-w-7xl px-6">
         <div class="mb-12 text-center">
-          <p class="text-xs font-semibold uppercase tracking-widest" style="color: #86EFAC;">Featured destinations</p>
-          <h2 class="mt-3 text-3xl font-bold sm:text-4xl" style="color: #FFFFFF;">Choose the perfect region</h2>
-          <p class="mt-2 text-sm" style="color: #475569;">Five provinces, endless adventures.</p>
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary">Featured destinations</p>
+          <h2 class="mt-3 text-3xl font-bold sm:text-4xl text-white">Choose the perfect region</h2>
+          <p class="mt-2 text-sm text-slate-400">Five provinces, endless adventures.</p>
         </div>
         <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
           <div v-for="dest in destinations" :key="dest.name"
             @click="goTo(dest.path)"
             role="button"
-            class="group cursor-pointer rounded-2xl p-6 text-left transition hover:-translate-y-1"
-            style="border: 1px solid rgba(255,255,255,0.08); background: #020617;"
-            onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';"
-            onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';">
-            <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl"
-              style="background: rgba(22,163,74,0.15); color: #22C55E;">
+            class="group cursor-pointer rounded-2xl p-6 text-left transition hover:-translate-y-1 border border-surface bg-surface hover:border-[#06b6d4]/30"
+          >
+            <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-300">
               <component :is="dest.icon" class="h-5 w-5" />
             </div>
-            <h3 class="mt-4 font-bold" style="color: #FFFFFF;">{{ dest.name }}</h3>
-            <p class="mt-1.5 text-sm leading-relaxed" style="color: #475569;">{{ dest.description }}</p>
-            <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold transition"
-              style="color: #16A34A;"
-              onmouseover="this.style.color='#22C55E';"
-              onmouseout="this.style.color='#16A34A';">
+            <h3 class="mt-4 font-bold text-white">{{ dest.name }}</h3>
+            <p class="mt-1.5 text-sm leading-relaxed text-slate-400">{{ dest.description }}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold transition text-primary">
               Learn more <ArrowRight class="h-3 w-3" />
             </span>
           </div>
@@ -221,21 +204,19 @@ const goTo = (path) => router.push(path)
     </section>
 
     <!-- ── CTA ── -->
-    <section class="py-16 text-center" style="background: #020617; border-top: 1px solid rgba(255,255,255,0.06);">
-      <p class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #86EFAC;">Ready to visit Rwanda?</p>
-      <h2 class="text-3xl font-bold sm:text-4xl" style="color: #FFFFFF;">Plan your journey today</h2>
-      <p class="mt-3 text-sm" style="color: #475569;">Our team in Kagugu, Kigali is ready to help.</p>
+    <section class="py-16 text-center bg-surface border-t border-surface">
+      <p class="text-xs font-semibold uppercase tracking-widest mb-2 text-primary">Ready to visit Rwanda?</p>
+      <h2 class="text-3xl font-bold sm:text-4xl text-white">Plan your journey today</h2>
+      <p class="mt-3 text-sm text-slate-400">Our team in Kagugu, Kigali is ready to help.</p>
       <div class="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <router-link to="/contact"
-          class="rounded-full px-8 py-3 text-sm font-semibold transition hover:opacity-90"
-          style="background: #16A34A; color: #FFFFFF;">
+          class="btn-primary"
+        >
           Contact Us
         </router-link>
         <a href="tel:0796608954"
-          class="rounded-full px-8 py-3 text-sm font-semibold transition"
-          style="border: 1px solid rgba(255,255,255,0.2); color: #F1F5F9;"
-          onmouseover="this.style.color='#22C55E'; this.style.borderColor='#22C55E';"
-          onmouseout="this.style.color='#F1F5F9'; this.style.borderColor='rgba(255,255,255,0.2)';">
+          class="btn-secondary"
+        >
           Call Now
         </a>
       </div>

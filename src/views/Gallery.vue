@@ -42,23 +42,22 @@ const closeLightbox = () => { lightbox.value = { open: false, src: '', label: ''
   <div class="bg-[#020617] text-slate-100 min-h-screen">
 
     <!-- Hero -->
-    <section class="relative overflow-hidden" style="min-height: 70vh;">
+    <section class="relative overflow-hidden min-h-[70vh]">
       <img :src="page.hero.image" alt="Hero image" class="absolute inset-0 h-full w-full object-cover brightness-90" />
       <div class="absolute inset-0 bg-gradient-to-b from-[#020617cc] via-[#020617dd] to-[#020617ee]"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-6 py-32 text-center">
         <div class="max-w-3xl mx-auto space-y-6">
-          <span v-if="page.hero.tag" class="inline-block rounded-full px-5 py-1.5 text-xs font-semibold uppercase tracking-widest"
-            style="background: rgba(22,163,74,0.15); color: #86EFAC; border: 1px solid rgba(134,239,172,0.25);">
+          <span v-if="page.hero.tag" class="inline-block rounded-full border border-cyan-500/40 bg-cyan-500/10 px-5 py-1.5 text-xs font-semibold uppercase tracking-widest text-cyan-300">
             {{ page.hero.tag }}
           </span>
-          <h1 class="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl" style="color: #FFFFFF;">{{ page.hero.title }}</h1>
-          <p class="text-lg sm:text-xl" style="color: #94A3B8;">{{ page.hero.subtitle }}</p>
+          <h1 class="text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">{{ page.hero.title }}</h1>
+          <p class="text-lg sm:text-xl text-slate-400">{{ page.hero.subtitle }}</p>
         </div>
       </div>
     </section>
 
     <!-- Gallery Section -->
-    <section class="py-20" style="background: #0F172A;">
+    <section class="py-20 bg-surface">
       <div class="mx-auto max-w-7xl px-6">
 
         <!-- Tab Switcher -->
@@ -166,16 +165,16 @@ const closeLightbox = () => { lightbox.value = { open: false, src: '', label: ''
     </section>
 
     <!-- CTA -->
-    <section v-if="page.cta" class="py-16 text-center" style="background: #0F172A; border-top: 1px solid rgba(255,255,255,0.06);">
+    <section v-if="page.cta" class="py-16 text-center bg-surface border-t border-surface">
       <div class="mx-auto max-w-4xl px-6">
-        <p v-if="page.cta.label" class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #86EFAC;">{{ page.cta.label }}</p>
-        <h2 class="text-3xl font-bold sm:text-4xl" style="color: #FFFFFF;">{{ page.cta.title }}</h2>
-        <p v-if="page.cta.subtitle" class="mx-auto mt-3 max-w-xl text-sm" style="color: #475569;">{{ page.cta.subtitle }}</p>
+        <p v-if="page.cta.label" class="text-xs font-semibold uppercase tracking-widest mb-2 text-primary">{{ page.cta.label }}</p>
+        <h2 class="text-3xl font-bold sm:text-4xl text-white">{{ page.cta.title }}</h2>
+        <p v-if="page.cta.subtitle" class="mx-auto mt-3 max-w-xl text-sm text-slate-400">{{ page.cta.subtitle }}</p>
         <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <button v-if="page.cta.primary" class="rounded-full px-8 py-3 text-sm font-semibold transition" style="background: #16A34A; color: #FFFFFF;">
+          <button v-if="page.cta.primary" class="btn-primary">
             {{ page.cta.primary.label }}
           </button>
-          <button v-if="page.cta.secondary" class="rounded-full px-8 py-3 text-sm font-semibold transition" style="border: 1px solid rgba(255,255,255,0.2); color: #F1F5F9; background: transparent;">
+          <button v-if="page.cta.secondary" class="btn-secondary">
             {{ page.cta.secondary.label }}
           </button>
         </div>
