@@ -9,6 +9,32 @@ body {
   color: #0f172a;
 }
 
+/* Theme variables */
+:root {
+  --primary: #06b6d4;
+  --accent: #0f172a;
+  --muted: #64748b;
+  --bg-green: #ecfdf5;
+  --card: #ffffff;
+}
+
+/* Typography */
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.6;
+}
+
+/* Utility styles */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.text-primary { color: var(--primary); }
+
+
 /* page background helpers */
 .page-white {
   background-color: #ffffff;
