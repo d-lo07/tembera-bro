@@ -42,15 +42,15 @@ import { RouterLink } from 'vue-router'
         <h3 class="font-semibold text-lg mb-4" style="color: #F8FAFC;">Contact us</h3>
         <p class="text-sm mb-4" style="color: #94A3B8;">Reach our team for fast planning and local recommendations.</p>
         <ul class="space-y-3 text-sm" style="color: #94A3B8;">
-          <li><span style="color: #F8FAFC; font-weight: 600;">Email</span>: cyusajason209@gmail.com</li>
-          <li><span style="color: #F8FAFC; font-weight: 600;">Phone</span>: 0796608954</li>
+          <li><span style="color: #F8FAFC; font-weight: 600;">Email</span>: idheureux07@gmail.com</li>
+          <li><span style="color: #F8FAFC; font-weight: 600;">Phone</span>: 070000000</li>
           <li><span style="color: #F8FAFC; font-weight: 600;">Address</span>: Kagugu, Rwanda</li>
         </ul>
       </div>
     </div>
 
     <div class="mt-12 pt-6 text-sm flex flex-col gap-3 md:flex-row md:items-center md:justify-between" style="border-top: 1px solid rgba(255, 255, 255, 0.08); color: #94A3B8;">
-      <p style="color: #CBD5E1;">&copy; Done By CYUSA JASON.</p>
+      <p style="color: #CBD5E1;">&copy; Done By IRANGABIYE DORLIN.</p>
       <div class="flex flex-wrap items-center gap-4">
         <RouterLink to="/" class="transition hover:text-[#22C55E]">Home</RouterLink>
         <RouterLink to="/about" class="transition hover:text-[#22C55E]">About</RouterLink>

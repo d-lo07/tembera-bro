@@ -69,6 +69,12 @@ const routes = [
     },
 ]
 
+// assign alternating background meta for routes: even -> white, odd -> green
+routes.forEach((r, i) => {
+    r.meta = r.meta || {}
+    r.meta.bg = i % 2 === 0 ? 'white' : 'green'
+})
+
 const router = createRouter({
     history: createWebHistory(),
     routes,

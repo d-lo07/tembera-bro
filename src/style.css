@@ -9,6 +9,15 @@ body {
   color: #0f172a;
 }
 
+/* page background helpers */
+.page-white {
+  background-color: #ffffff;
+}
+
+.page-green {
+  background-color: #ecfdf5;
+}
+
 .bg-slate-950,
 [class*="bg-slate-950"] {
   background-color: #ffffff !important;
